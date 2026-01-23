@@ -17,7 +17,7 @@ fi
 # Install packages
 echo ""
 echo "📦 Installing CLI tools..."
-brew install tmux zsh bat eza starship neovim zoxide
+brew install tmux zsh bat eza starship neovim zoxide fzf
 
 echo ""
 echo "🔤 Installing JetBrains Mono Nerd Font..."
@@ -40,8 +40,12 @@ echo "📦 Installing Antidote (zsh plugin manager)..."
 brew install antidote
 
 echo ""
+echo "📦 Setting up fzf (fuzzy finder with Ctrl+R history search)..."
+$(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
+
+echo ""
 echo "📦 Installing TPM (tmux plugin manager)..."
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 2>/dev/null || echo "  TPM already installed"
 
 echo ""
 echo "✅ All tools installed!"
