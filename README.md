@@ -23,25 +23,26 @@ My lean CLI setup with Catppuccin Mocha theme.
 
 ## Installation
 
-1. Clone this repo:
+1. Clone this repo to your home directory:
 ```bash
-git clone https://github.com/YOUR_USERNAME/dotfiles.git
-cd dotfiles
+git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
+cd ~/dotfiles
 ```
 
-2. Run setup script:
+2. Run setup script (installs tools and creates symlinks):
 ```bash
 chmod +x setup-cli.sh
 ./setup-cli.sh
 ```
 
-3. Copy config files:
-```bash
-cp .zshrc ~/.zshrc
-cp .tmux.conf ~/.tmux.conf
-mkdir -p ~/.config
-cp -r config/* ~/.config/
-```
+The script will:
+- Install all required tools via Homebrew
+- Create symlinks from `~/.zshrc`, `~/.tmux.conf`, etc. to files in `~/dotfiles`
+- Backup any existing config files to `*.backup`
+
+**Why symlinks?** Any changes you make to `~/.zshrc` are automatically in your git repo since it's a symlink to `~/dotfiles/.zshrc`!
+
+3. Follow the post-install steps from the script output
 
 4. Restart terminal: `exec zsh`
 

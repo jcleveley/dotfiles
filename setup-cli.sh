@@ -46,19 +46,48 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 echo ""
 echo "✅ All tools installed!"
 echo ""
-echo "📝 Next steps:"
-echo "1. Clone your dotfiles from GitHub (or copy configs):"
-echo "   ~/.zshrc, ~/.tmux.conf, ~/.config/starship.toml, ~/.config/nvim/init.lua"
+echo "🔗 Creating symlinks to dotfiles..."
+
+# Get the dotfiles directory (assumes script is run from dotfiles folder)
+DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Backup existing files
+backup_and_link() {
+    local source="$1"
+    local target="$2"
+
+    if [ -e "$target" ] && [ ! -L "$target" ]; then
+        echo "  Backing up existing $target to ${target}.backup"
+        mv "$target" "${target}.backup"
+    elif [ -L "$target" ]; then
+        echo "  Removing existing symlink $target"
+        rm "$target"
+    fi
+
+    echo "  Linking $target → $source"
+    ln -s "$source" "$target"
+}
+
+# Create symlinks
+backup_and_link "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
+backup_and_link "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
+mkdir -p "$HOME/.config"
+backup_and_link "$DOTFILES_DIR/config/starship.toml" "$HOME/.config/starship.toml"
+backup_and_link "$DOTFILES_DIR/config/nvim" "$HOME/.config/nvim"
+
 echo ""
-echo "2. Configure iTerm2:"
+echo "✅ Symlinks created!"
+echo ""
+echo "📝 Next steps:"
+echo "1. Configure iTerm2:"
 echo "   - Preferences → Profiles → Text"
 echo "   - Set Font to: JetBrainsMono Nerd Font Mono (14pt)"
 echo "   - Preferences → Profiles → Colors"
 echo "   - Import: https://github.com/catppuccin/iterm/blob/main/colors/catppuccin-mocha.itermcolors"
 echo ""
-echo "3. Restart terminal: exec zsh"
+echo "2. Restart terminal: exec zsh"
 echo ""
-echo "4. In tmux, press Ctrl-Space + I to install plugins"
+echo "3. In tmux, press Ctrl-Space + I to install plugins"
 echo ""
-echo "5. Open nvim - plugins will auto-install"
+echo "4. Open nvim - plugins will auto-install"
 echo ""
