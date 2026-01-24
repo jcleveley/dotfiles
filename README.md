@@ -8,7 +8,7 @@ My lean CLI setup with Catppuccin Mocha theme.
 - **Prompt**: Starship
 - **Terminal Multiplexer**: tmux
 - **Editor**: Neovim
-- **Utilities**: bat, eza, zoxide
+- **Utilities**: bat, eza, fzf, zoxide
 - **Font**: JetBrains Mono Nerd Font
 - **Theme**: Catppuccin Mocha
 
@@ -16,6 +16,7 @@ My lean CLI setup with Catppuccin Mocha theme.
 
 - 🎨 Catppuccin Mocha colors throughout
 - ⚡ Fast fuzzy finding with Telescope
+- 🔎 Fuzzy history search with fzf (Ctrl-R)
 - 📁 Auto-completion and suggestions
 - 🔍 Syntax highlighting
 - 📂 Smart directory jumping with z
@@ -37,8 +38,17 @@ chmod +x setup-cli.sh
 
 The script will:
 - Install all required tools via Homebrew
-- Create symlinks from `~/.zshrc`, `~/.tmux.conf`, etc. to files in `~/dotfiles`
+- Create symlinks from config files to `~/dotfiles`
 - Backup any existing config files to `*.backup`
+
+## Symlinks
+
+| Home | Dotfiles |
+|------|----------|
+| `~/.zshrc` | `~/dotfiles/.zshrc` |
+| `~/.tmux.conf` | `~/dotfiles/.tmux.conf` |
+| `~/.config/starship.toml` | `~/dotfiles/config/starship.toml` |
+| `~/.config/nvim/init.lua` | `~/dotfiles/config/nvim/init.lua` |
 
 **Why symlinks?** Any changes you make to `~/.zshrc` are automatically in your git repo since it's a symlink to `~/dotfiles/.zshrc`!
 
@@ -51,6 +61,11 @@ The script will:
 6. Open nvim - plugins will auto-install
 
 ## Key Bindings
+
+### Shell (fzf)
+- `Ctrl-R` - Fuzzy search command history
+- `Ctrl-T` - Fuzzy find files
+- `Alt-C` - Fuzzy cd into directory
 
 ### tmux (Prefix: Ctrl-Space)
 - `Ctrl-Space |` - Split vertical
