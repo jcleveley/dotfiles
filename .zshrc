@@ -20,7 +20,7 @@ zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting
 
 # Smart directory jumping
-agkozak/zsh-z
+:agkozak/zsh-z
 PLUGINS
 fi
 
@@ -57,6 +57,7 @@ alias ls='eza --icons --group-directories-first'
 alias ll='eza --icons --group-directories-first -l'
 alias la='eza --icons --group-directories-first -la'
 alias lt='eza --icons --group-directories-first --tree'
+alias v='nvim'
 
 # bat (cat replacement)
 alias cat='bat --theme=Catppuccin-mocha'
